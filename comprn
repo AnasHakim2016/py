@@ -1,0 +1,25 @@
+
+getraenke = [
+    ("Espresso", 180, "Kaffee"),
+    ("Cappuccino", 280, "Kaffee"),
+    ("Latte Macchiato", 350, "Kaffee"),
+    ("Filterkaffee", 220, "Kaffee"),
+    ("Cola", 250, "Kaltgetränk"),
+    ("Apfelschorle", 240, "Kaltgetränk"),
+    ("Mineralwasser", 150, "Kaltgetränk"),
+    ("Schwarzer Tee", 200, "Tee"),
+    ("Kamillentee", 200, "Tee")
+]
+
+guenstige_karte = {name: cent / 100 for name, cent, kat in getraenke if cent <= 300}
+
+
+kategorien = {kat for name, cent, kat in getraenke}
+
+
+kaffee_preise = {name: f"{cent / 100:.2f} €".replace('.', ',') for name, cent, kat in getraenke if kat == "Kaffee"}
+
+
+print("Günstige Karte:", guenstige_karte)
+print("Kategorien:", kategorien)
+print("Kaffee-Preise:", kaffee_preise)

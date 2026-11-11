@@ -1,0 +1,36 @@
+# Die Funktionen sind fertig. Du schreibst nur die Aufrufe an den markierten Stellen.
+
+def begruessung(name, ort):
+    return f"Willkommen, {name}, schön, dass du in {ort} dabei bist!"
+
+
+def reserviere_tisch(personen, *, bereich):
+    return f"Tisch für {personen} Personen im Bereich {bereich} reserviert."
+
+
+def anmeldung(name, alter, stadt):
+
+    return f"Anmeldung: {name}, {alter} Jahre, aus {stadt}."
+
+
+def standplatz(nummer, name, *, kategorie, dauer):
+    return f"Stand {nummer} ({name}): {kategorie}, {dauer} Stunden geöffnet."
+
+
+# Schritt 1: einmal über die Position, einmal über den Namen
+print(begruessung("Lena","Nordstadt"))  # Lena, Nordstadt, über die Position
+print(begruessung(name="Tomás", ort="Altstadt"))   # Tomás, Altstadt, über den Namen
+
+# Schritt 2: bereich nur über den Namen
+print(reserviere_tisch(6,bereich="Bühne"))  # 6 Personen, Bereich "Bühne"
+
+# Schritt 3: aus Liste und aus Dictionary entpacken
+daten_liste = ["Mara", 29, "Bremen"]
+daten_dict = {"name": "Jonas", "alter": 34, "stadt": "Kiel"}
+print(anmeldung(*daten_liste))  # daten_liste mit * entpacken
+print(anmeldung(**daten_dict))  # daten_dict mit ** entpacken
+
+# Schritt 4: alles in einem Aufruf
+basis = [12, "Waffelstand"]
+extra = {"kategorie": "Essen", "dauer": 4}
+print(standplatz(*basis, **extra))  # basis mit * und extra mit ** in einem Aufruf

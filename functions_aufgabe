@@ -1,0 +1,37 @@
+def etikett(name):
+    return f"Artikel: {name.capitalize()}"
+
+
+def zeilensumme(preis, menge):
+    return round(preis*menge, 1)
+
+
+def bonzeile(name, preis, menge):
+    return f"{menge} X {name.capitalize()} = {zeilensumme(preis, menge):.2f} EUR"
+
+
+def mit_mwst(betrag, satz=0.07):
+    return round(betrag+(betrag * satz), 3)
+
+
+def gesamtsumme(positionen):
+  return sum(preis * menge for _, preis, menge in positionen)
+
+
+def teure_artikel(positionen, grenze):
+    return [
+      f"Artikel: {name.capitalize()}"
+      for name, preis, menge in positionen
+      if preis * menge > grenze
+  ]
+
+
+positionen = [("apfel", 0.80, 6), ("ei", 0.30, 10), ("saft", 2.50, 2)]
+
+print(etikett("apfel"))
+print(zeilensumme(0.80, 6))
+print(bonzeile("apfel", 0.80, 6))
+print(mit_mwst(4.8))
+print(mit_mwst(4.8, 0.19))
+print(gesamtsumme(positionen))
+print(teure_artikel(positionen, 4))
