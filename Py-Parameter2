@@ -1,0 +1,32 @@
+#Stufe 1
+def bestellung_1(tisch, kellner):
+    return f"Tisch {tisch}, bedient von {kellner}"
+print(bestellung_1(7, "Mara"))
+
+#Stufe 2
+def bestellung_2(tisch, *, kellner):
+    return f"Tisch {tisch}, bedient von {kellner}"
+print(bestellung_2(8, kellner="Sarah"))
+
+#Stufe 3
+def bestellung(tisch, *artikel, kellner, **notizen):
+    zeilen = [f"Tisch {tisch}, bedient von {kellner}"]
+    for art in artikel:
+        zeilen.append(str(art))
+    for schluessel, wert in notizen.items():
+        zeilen.append(f"{schluessel}: {wert}")
+    return "\n".join(zeilen)
+
+#Stufe 3 test
+ergebnis = bestellung(
+    7, 
+    "Kaffee", 
+    "Kuchen", 
+    "Wasser", 
+    kellner="Mara", 
+    anmerkung="ohne Zucker", 
+    extra="Gläser bitte kühlen"
+)
+
+print(ergebnis)
+
