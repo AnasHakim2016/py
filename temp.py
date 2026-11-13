@@ -1,7 +1,5 @@
-def sammle(element, behälter=[]):
-    behälter.append(element)
-    return behälter
+import random
+import math
 
-print(sammle(1))
-print(sammle(2))
-print(sammle(3))
+print(math.sqrt(2))        # 1.4142135623730951
+print(random.randint(1, 6))
