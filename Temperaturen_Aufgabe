@@ -1,0 +1,21 @@
+pfad = "temperaturen.txt"
+
+anzahl_tage = 0
+summe = 0.0
+sommertage = 0
+Ergebnis = []
+with open(pfad, "r") as datei:
+    for zeile in datei:
+        zeile = zeile.rstrip()
+        anzahl_tage += 1
+        # Zeile am Semikolon trennen und die Temperatur als Kommazahl gewinnen
+        Ergebnis=(zeile.split(";"))
+        if (float(Ergebnis[1]) > 25):
+            sommertage += 1
+        summe += float(Ergebnis[1])
+
+durchschnitt = summe / anzahl_tage if anzahl_tage > 0 else 0
+
+print(f"Anzahl der Tage: {anzahl_tage}")
+print(f"Anzahl der Sommertage: {sommertage}")
+print(f"Durchschnittstemperatur: {round(durchschnitt, 2)}")

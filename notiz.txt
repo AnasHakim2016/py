@@ -1,0 +1,3 @@
+Test datei
+Lesen der Inhalt der datei
+TEST TEST TESt
