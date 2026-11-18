@@ -1,0 +1,21 @@
+import json
+
+einstellungen = {
+    "benutzername": "alex",
+    "schriftgroesse": 14,
+    "dunkelmodus": True,
+    "autospeichern": False,
+}
+
+json_string = json.dumps(einstellungen)
+
+print (json_string)
+print("jsonstring type:", type(json_string))
+
+with open("einstellungen.json", "w") as datei:
+    datei.write(json_string)
+
+with open("einstellungen.json", "r") as datei:
+    geladene_einstellungen = json.load(datei)
+
+print(geladene_einstellungen== einstellungen)

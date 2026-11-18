@@ -1,0 +1,91 @@
+import json
+import csv
+
+# --- Gegebene Starter-Daten ---
+lesekreise = [
+    {
+        "name": "Krimirunde",
+        "treffpunkt": "Lesesaal Nord",
+        "buecher": ["Der Hund von Baskerville", "Mord im Orientexpress"],
+        "naechste_termine": ["2025-09-12", "2025-10-10"],
+    },
+    {
+        "name": "Sachbuchkreis",
+        "treffpunkt": "Cafébereich",
+        "buecher": ["Eine kurze Geschichte der Zeit"],
+        "naechste_termine": ["2025-09-19"],
+    },
+    {
+        "name": "Lyrik am Abend",
+        "treffpunkt": "Lesesaal Süd",
+        "buecher": ["Werke von Rilke", "Werke von Celan", "Werke von Bachmann"],
+        "naechste_termine": ["2025-09-05", "2025-09-26", "2025-10-17"],
+    },
+]
+
+#Speichern in lesekreise.json
+with open("lesekreise.json", "w", encoding="utf-8") as datei:
+    json.dump(lesekreise, datei, ensure_ascii=False, indent=4)
+
+print("Datei 'lesekreise.json' erfolgreich geschrieben.")
+
+#Einlesen aus lesekreise.json
+with open("lesekreise.json", "r") as datei:
+    geladen = json.load(datei)
+
+#Systematische Prüfung (Gesamt & Ebene für Ebene)
+print("\n[Prüfung] Gesamtvergleich:")
+if geladen == lesekreise:
+    print("Die geladene Struktur ist als Ganzes identisch mit dem Original.")
+else:
+    print("ERROR: Abweichungen im Gesamtvergleich.")
+
+print("\n[Prüfung] Ebene für Ebene (Lesekreise & innere Listen):")
+for i, (orig, neu) in enumerate(zip(lesekreise, geladen), start=1):
+    print(f"\n  Lesekreis {i}: '{orig['name']}'")
+    
+    # Prüfung der flachen Werte
+    if orig["name"] == neu["name"] and orig["treffpunkt"] == neu["treffpunkt"]:
+        print(f"    - Basisdaten (Name, Treffpunkt): OK")
+    
+    # Prüfung der inneren Liste 'buecher'
+    if orig["buecher"] == neu["buecher"] and isinstance(neu["buecher"], list):
+        print(f"    - Innere Liste 'buecher': OK (Typ: {type(neu['buecher']).__name__}, Elemente: {len(neu['buecher'])})")
+    else:
+        print(f"    - Innere Liste 'buecher': Fehlerhaft!")
+        
+    # Prüfung der inneren Liste 'naechste_termine'
+    if orig["naechste_termine"] == neu["naechste_termine"] and isinstance(neu["naechste_termine"], list):
+        print(f" Innere Liste 'naechste_termine': OK (Typ: {type(neu['naechste_termine']).__name__}, Elemente: {len(neu['naechste_termine'])})")
+    else:
+        print(f"    - Innere Liste 'naechste_termine': Fehlerhaft!")
+
+
+print("\n\n=== SCHRITT 2: CSV-Gegenversuch (Flaches Format) ===")
+
+# 1. In CSV schreiben (Listen müssen als String serialisiert werden)
+with open("lesekreise.csv", "w", newline="", encoding="utf-8") as datei:
+    writer = csv.writer(datei)
+    # Header schreiben
+    writer.writerow(["name", "treffpunkt", "buecher", "naechste_termine"])
+    for kreis in lesekreise:
+        writer.writerow([
+            kreis["name"],
+            kreis["treffpunkt"],
+            ", ".join(kreis["buecher"]),         
+            ", ".join(kreis["naechste_termine"])  
+        ])
+print("Datei 'lesekreise.csv' erfolgreich geschrieben.")
+
+# CSV wieder einlesen
+geladen_csv = []
+with open("lesekreise.csv", "r") as datei:
+    reader = csv.DictReader(datei)
+    for zeile in reader:
+        geladen_csv.append(zeile)
+
+#Datentyp-Analyse nach dem Einlesen aus CSV
+beispiel_buecher = geladen_csv[0]["buecher"]
+print(f"\n[Analyse des CSV-Rücklesens]:")
+print(f"Wert hinter 'buecher': {beispiel_buecher!r}")
+print(f"Datentyp nach CSV-Import: {type(beispiel_buecher).__name__}")

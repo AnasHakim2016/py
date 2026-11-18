@@ -1,5 +1,15 @@
-import random
-import math
+from pathlib import Path
 
-print(math.sqrt(2))        # 1.4142135623730951
-print(random.randint(1, 6))
+ordner = Path(".")
+
+for eintrag in ordner.iterdir():
+    print(eintrag)
+
+print("\n#######################################:")
+
+from pathlib import Path
+
+ordner = Path("workshop")
+
+for eintrag in ordner.rglob("*"):
+    print(eintrag)

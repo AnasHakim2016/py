@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Krimirunde",
+        "treffpunkt": "Lesesaal Nord",
+        "buecher": [
+            "Der Hund von Baskerville",
+            "Mord im Orientexpress"
+        ],
+        "naechste_termine": [
+            "2025-09-12",
+            "2025-10-10"
+        ]
+    },
+    {
+        "name": "Sachbuchkreis",
+        "treffpunkt": "Cafébereich",
+        "buecher": [
+            "Eine kurze Geschichte der Zeit"
+        ],
+        "naechste_termine": [
+            "2025-09-19"
+        ]
+    },
+    {
+        "name": "Lyrik am Abend",
+        "treffpunkt": "Lesesaal Süd",
+        "buecher": [
+            "Werke von Rilke",
+            "Werke von Celan",
+            "Werke von Bachmann"
+        ],
+        "naechste_termine": [
+            "2025-09-05",
+            "2025-09-26",
+            "2025-10-17"
+        ]
+    }
+]

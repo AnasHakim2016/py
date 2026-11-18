@@ -1,0 +1,7 @@
+Montag: 12.4 °C
+Dienstag: 14.1 °C
+Mittwoch: 15.8 °C
+Donnerstag: 13.2 °C
+Freitag: 17.3 °C
+Samstag: 16.0 °C
+Sonntag: 14.9 °C

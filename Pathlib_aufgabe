@@ -1,0 +1,53 @@
+from pathlib import Path
+
+basis = Path("workshop")
+(basis / "bilder").mkdir(parents=True, exist_ok=True)
+(basis / "notizen").mkdir(parents=True, exist_ok=True)
+(basis / "bilder" / "strand.jpg").write_text("Beispielbild")
+(basis / "notizen" / "tag1.txt").write_text("Notizen vom ersten Tag")
+
+#Schritt 1
+bilder_ordner = basis / "bilder"
+print("bilder_ordner:", bilder_ordner)
+
+#Schritt 2
+bild_pfad = bilder_ordner / "strand.jpg"
+print("bild_pfad:", bild_pfad)
+
+#Schritt 3
+gegebener_pfad = basis / "notizen" / "tag1.txt"
+
+dateiname = gegebener_pfad.name
+name_ohne_endung = gegebener_pfad.stem
+endung = gegebener_pfad.suffix
+uebergeordneter_ort = gegebener_pfad.parent
+
+print(f"Vollständiger Dateiname: {dateiname}")
+print(f"Name ohne Endung: {name_ohne_endung}")
+print(f"Endung: {endung}")
+print(f"Übergeordneter Ort: {uebergeordneter_ort}")
+
+def pfad_bericht(ort: Path):
+    print(f"Bericht für Pfad: {ort}")
+    
+    if not ort.exists():
+        print("Dieser Ort existiert im Dateisystem nicht.\n")
+        return
+    
+    # Bestimmen, ob Datei oder Verzeichnis
+    if ort.is_dir():
+        typ = "Verzeichnis"
+    elif ort.is_file():
+        typ = "Datei"
+    else:
+        typ = "Anderes Objekt"
+        
+    print(f"Vollständiger Name: {ort.name}")
+    print(f"Endung: {ort.suffix if ort.suffix else '(keine)'}")
+    print(f"Übergeordneter Ort: {ort.parent}")
+    print(f"Existenz: Vorhanden")
+    print(f"Art: {typ}\n")
+
+# Funktionsaufrufe
+pfad_bericht(basis / "bilder" / "strand.jpg")
+pfad_bericht(basis / "nicht_vorhanden" / "test.txt")
