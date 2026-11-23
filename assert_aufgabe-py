@@ -1,0 +1,26 @@
+import pytest
+
+
+def rabatt_anwenden(preis: float, prozent: int) -> float:
+    if prozent < 0 or prozent > 100:
+        raise ValueError("prozent muss zwischen 0 und 100 liegen")
+    return preis * (1 - prozent / 100)
+
+
+def test_rabatt_anwenden_zieht_zehn_prozent_ab():
+    ergebnis = rabatt_anwenden(100.0, 10)
+    assert ergebnis == pytest.approx(90.0)
+
+
+def test_rabatt_anwenden_randwerte_null_und_hundert_prozent():
+    assert rabatt_anwenden(100.0, 0) == pytest.approx(100.0)
+    assert rabatt_anwenden(100.0, 100) == pytest.approx(0.0)
+
+
+def test_rabatt_anwenden_wirft_value_error_bei_prozent_ueber_100():
+    with pytest.raises(ValueError):
+        rabatt_anwenden(100.0, 101)
+
+
+test_rabatt_anwenden_zieht_zehn_prozent_ab()
+test_rabatt_anwenden_randwerte_null_und_hundert_prozent()       

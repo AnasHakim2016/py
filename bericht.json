@@ -1,0 +1,39 @@
+{
+  "summe_je_kategorie": {
+    "Freizeit": 567974.96,
+    "Lebensmittel": 559404.08,
+    "Miete": 616509.49,
+    "Strom": 559715.59,
+    "Transport": 556221.25,
+    "Versicherung": 613929.28
+  },
+  "konten": [
+    "DE-01",
+    "DE-02",
+    "DE-03",
+    "DE-04",
+    "DE-05",
+    "DE-06",
+    "DE-07",
+    "DE-08"
+  ],
+  "groesste": [
+    {
+      "konto": "DE-05",
+      "betrag": 1999.99,
+      "kategorie": "Freizeit"
+    },
+    {
+      "konto": "DE-07",
+      "betrag": 1999.99,
+      "kategorie": "Transport"
+    },
+    {
+      "konto": "DE-01",
+      "betrag": 1499.36,
+      "kategorie": "Versicherung"
+    }
+  ],
+  "fehlerhafte_zeilen": 310,
+  "dauer_sekunden": 0.044726
+}
